@@ -22,20 +22,11 @@ $app = new Boa\App();
 $router = new Boa\Router\Router();
 $SQL = new Boa\Database\SQL();
 
-// Error Handler
-$router->set404(function () {
-    header($_SERVER['SERVER_PROTOCOL'].' 404 Not Found');
-    exit;
-});
-
 // Before Router Middleware
 $router->before('GET', '/.*', function () {
-    header('X-Powered-By: Boa/Router');
+    header('Location: /Bonfire/error.php?code=404');
+    exit;
 });
-
-// Load Data
-$Categories = $SQL->Select('slug', 'categories', '1', 'ALL:ASSOC');
-$Projects = $SQL->Select('slug', 'projects', '1', 'ALL');
 
 // Homepage
 $router->get('/', function () {
