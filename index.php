@@ -16,7 +16,7 @@ if (php_sapi_name() === 'cli-server' && is_file($filename)) {
     return false;
 }
 
-require_once 'Boa/Boa.php';
+require_once __DIR__ . '/Boa/Boa.php';
 
 $app = new Boa\App();
 $router = new Boa\Router\Router();
